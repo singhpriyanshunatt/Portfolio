@@ -3,27 +3,967 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume</title>
+
+    <title>Priyanshu Singh | Portfolio</title>
+
     <style>
-        header{
-            background-color: ;
-            text-align: left;
+        /* =========================
+           GLOBAL STYLES
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
-        .name{
-            color: rgb(194, 17, 17);
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fa;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        nav {
+            background: #111827;
+            color: white;
+            padding: 18px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #3b82f6;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: white;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+
+
+        /* =========================
+           HERO SECTION
+        ========================== */
+
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #111827, #1e3a8a);
+            color: white;
+        }
+
+        .hero-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 52px;
+            margin-bottom: 10px;
+        }
+
+        .hero-text h1 span {
+            color: #60a5fa;
+        }
+
+        .hero-text h2 {
+            font-size: 25px;
+            color: #d1d5db;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            max-width: 600px;
+            color: #d1d5db;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+
+        .btn-outline {
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #111827;
+        }
+
+        .profile-image {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #60a5fa;
+        }
+
+
+        /* =========================
+           GENERAL SECTIONS
+        ========================== */
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: #111827;
+        }
+
+        .section-title p {
+            color: #6b7280;
+            margin-top: 8px;
+        }
+
+
+        /* =========================
+           ABOUT
+        ========================== */
+
+        .about {
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .about-text p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .personal-info {
+            list-style: none;
+        }
+
+        .personal-info li {
+            margin-bottom: 10px;
+        }
+
+        .personal-info strong {
+            color: #111827;
+        }
+
+
+        /* =========================
+           SKILLS
+        ========================== */
+
+        .skills {
+            background: #f5f7fa;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-card h3 {
+            margin-bottom: 10px;
+            color: #1e3a8a;
+        }
+
+        .skill-card p {
+            color: #666;
+        }
+
+
+        /* =========================
+           PROJECTS
+        ========================== */
+
+        .projects {
+            background: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .project-card {
+            background: #f8fafc;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .project-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .project-link {
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           EDUCATION
+        ========================== */
+
+        .education {
+            background: #f5f7fa;
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #2563eb;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+        }
+
+        .timeline-item h3 {
+            color: #111827;
+        }
+
+        .timeline-item span {
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           CONTACT
+        ========================== */
+
+        .contact {
+            background: #111827;
+            color: white;
+        }
+
+        .contact .section-title h2 {
+            color: white;
+        }
+
+        .contact-content {
+            text-align: center;
+        }
+
+        .contact-content p {
+            color: #d1d5db;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .contact-info div {
+            color: #d1d5db;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            background: #030712;
+            color: #9ca3af;
+            text-align: center;
+            padding: 20px;
+        }
+
+
+        /* =========================
+           RESPONSIVE DESIGN
+        ========================== */
+
+        @media (max-width: 768px) {
+
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 50px 0;
+            }
+
+            .hero-text h1 {
+                font-size: 40px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-image {
+                width: 220px;
+                height: 220px;
+            }
         }
     </style>
 </head>
+
 <body>
-    <header>
-        <h1>Hello</h1>
-        <h4 class="name"> Name - Priyanshu Singh </h4>
-        <h4 class="name"> Class - B-Tech CSE </h4>
-        <h4 class="name"> Address - Talwandi Sabo </h4>
-        <h4 class="name"> Phone no. - 8077765950 </h4>
-        <h4 class="name"> Email. - choudharypriyanshu231@gmail.com </h4>
-        <img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4W5se-3sXcI-CuvSm5GbPoSk655stnvqEeWyX1M79KA&s=10"
-         alt="resume photo">
-    </header>
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <nav>
+        <div class="container nav-container">
+
+            <div class="logo">
+                Priyanshu<span>.</span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+        </div>
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero" id="home">
+
+        <div class="container hero-content">
+
+            <div class="hero-text">
+
+                <h1>
+                    Hi, I'm <span>Priyanshu Singh</span>
+                </h1>
+
+                <h2>
+                    B.Tech CSE Student & Aspiring Developer
+                </h2>
+
+                <p>
+                    I am a Computer Science student interested in
+                    web development, programming, and building
+                    useful digital solutions.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <!-- Replace CV link -->
+                    <a href="#" class="btn btn-primary">
+                        Download CV
+                    </a>
+
+                    <a href="#contact" class="btn btn-outline">
+                        Contact Me
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Replace this image URL with your own photo -->
+
+            <img
+                class="profile-image"
+                src="YOUR_PROFILE_IMAGE_URL"
+                alt="Priyanshu Singh"
+            >
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section class="about" id="about">
+
+        <div class="container">
+
+            <div class="section-title">
+                <h2>About Me</h2>
+                <p>Get to know me</p>
+            </div>
+
+            <div class="about-content">
+
+                <div class="about-text">
+
+                    <h3>Hello! I'm Priyanshu.</h3>
+
+                    <p>
+                        I am currently pursuing B.Tech in Computer
+                        Science and Engineering. I enjoy learning
+                        programming and developing websites and
+                        applications.
+                    </p>
+
+                    <p>
+                        My goal is to continuously improve my
+                        technical skills and work on real-world
+                        projects.
+                    </p>
+
+                </div>
+
+
+                <ul class="personal-info">
+
+                    <li>
+                        <strong>Name:</strong>
+                        Priyanshu Singh
+                    </li>
+
+                    <li>
+                        <strong>Degree:</strong>
+                        B.Tech CSE
+                    </li>
+
+                    <li>
+                        <strong>Location:</strong>
+                        Your Location
+                    </li>
+
+                    <li>
+                        <strong>Email:</strong>
+                        your-email@example.com
+                    </li>
+
+                    <li>
+                        <strong>Phone:</strong>
+                        +91 XXXXX XXXXX
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SKILLS
+    ========================== -->
+
+    <section class="skills" id="skills">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>My Skills</h2>
+
+                <p>
+                    Technologies and tools I work with
+                </p>
+
+            </div>
+
+
+            <div class="skills-grid">
+
+                <!-- SKILL 1 -->
+
+                <div class="skill-card">
+
+                    <h3>HTML</h3>
+
+                    <p>
+                        Add your experience or skill level here.
+                    </p>
+
+                </div>
+
+
+                <!-- SKILL 2 -->
+
+                <div class="skill-card">
+
+                    <h3>CSS</h3>
+
+                    <p>
+                        Add your experience or skill level here.
+                    </p>
+
+                </div>
+
+
+                <!-- SKILL 3 -->
+
+                <div class="skill-card">
+
+                    <h3>JavaScript</h3>
+
+                    <p>
+                        Add your experience or skill level here.
+                    </p>
+
+                </div>
+
+
+                <!-- ADD MORE SKILLS -->
+
+                <div class="skill-card">
+
+                    <h3>Python</h3>
+
+                    <p>
+                        Add your experience or skill level here.
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <h3>Git & GitHub</h3>
+
+                    <p>
+                        Add your experience or skill level here.
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <h3>Your Skill</h3>
+
+                    <p>
+                        Add another skill here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PROJECTS
+    ========================== -->
+
+    <section class="projects" id="projects">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>My Projects</h2>
+
+                <p>
+                    Some of the projects I have worked on
+                </p>
+
+            </div>
+
+
+            <div class="projects-grid">
+
+
+                <!-- PROJECT 1 -->
+
+                <div class="project-card">
+
+                    <!-- Replace image -->
+                    <img
+                        src="PROJECT_IMAGE_URL"
+                        alt="Project 1"
+                    >
+
+                    <div class="project-content">
+
+                        <h3>Project Name</h3>
+
+                        <p>
+                            Write a short description of your
+                            project here. Explain what it does
+                            and what technologies you used.
+                        </p>
+
+                        <!-- Replace # with project URL -->
+
+                        <a
+                            href="#"
+                            class="project-link"
+                            target="_blank"
+                        >
+                            View Project →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROJECT 2 -->
+
+                <div class="project-card">
+
+                    <img
+                        src="PROJECT_IMAGE_URL"
+                        alt="Project 2"
+                    >
+
+                    <div class="project-content">
+
+                        <h3>Project Name</h3>
+
+                        <p>
+                            Add your project description here.
+                        </p>
+
+                        <a
+                            href="#"
+                            class="project-link"
+                            target="_blank"
+                        >
+                            View Project →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROJECT 3 -->
+
+                <div class="project-card">
+
+                    <img
+                        src="PROJECT_IMAGE_URL"
+                        alt="Project 3"
+                    >
+
+                    <div class="project-content">
+
+                        <h3>Project Name</h3>
+
+                        <p>
+                            Add your project description here.
+                        </p>
+
+                        <a
+                            href="#"
+                            class="project-link"
+                            target="_blank"
+                        >
+                            View Project →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         EDUCATION
+    ========================== -->
+
+    <section class="education" id="education">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Education</h2>
+
+                <p>
+                    My academic background
+                </p>
+
+            </div>
+
+
+            <div class="timeline">
+
+
+                <!-- EDUCATION 1 -->
+
+                <div class="timeline-item">
+
+                    <span>2024 - Present</span>
+
+                    <h3>
+                        B.Tech - Computer Science & Engineering
+                    </h3>
+
+                    <p>
+                        College / University Name
+                    </p>
+
+                    <p>
+                        Add CGPA, achievements or relevant
+                        information here.
+                    </p>
+
+                </div>
+
+
+                <!-- EDUCATION 2 -->
+
+                <div class="timeline-item">
+
+                    <span>2022 - 2024</span>
+
+                    <h3>
+                        Class 12th
+                    </h3>
+
+                    <p>
+                        School Name
+                    </p>
+
+                    <p>
+                        Add percentage / achievements here.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+    ========================== -->
+
+    <section class="contact" id="contact">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Contact Me</h2>
+
+                <p>
+                    Let's connect and build something together.
+                </p>
+
+            </div>
+
+
+            <div class="contact-content">
+
+                <div class="contact-info">
+
+                    <div>
+                        📧 your-email@example.com
+                    </div>
+
+                    <div>
+                        📱 +91 XXXXX XXXXX
+                    </div>
+
+                    <div>
+                        📍 Your Location
+                    </div>
+
+                </div>
+
+
+                <!-- Replace # with your actual links -->
+
+                <a
+                    href="https://github.com/"
+                    target="_blank"
+                    class="btn btn-primary"
+                >
+                    GitHub
+                </a>
+
+                <a
+                    href="https://www.linkedin.com/"
+                    target="_blank"
+                    class="btn btn-outline"
+                >
+                    LinkedIn
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <p>
+            © 2026 Priyanshu Singh. All Rights Reserved.
+        </p>
+
+    </footer>
+
 </body>
 </html>
+
